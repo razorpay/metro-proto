@@ -1,7 +1,8 @@
-# Protobuf definitions for Razorpay services
+# metro-proto
+Protobuf definitions for Metro
 
 ## Intro
-Repo for maintaining protobuf definitions for Razorpay services.
+Repo for maintaining protobuf definitions for Metro.
 
 Suggested readings-
 - [Protocol buffers](https://github.com/protocolbuffers/protobuf)
