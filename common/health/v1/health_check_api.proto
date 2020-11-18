@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package rzp.common.health.v1;
 
-option go_package = "healthv1";
+option go_package = "common/health/v1;healthv1";
 option php_namespace = "Rzp\\Common\\Health\\V1";
 
 // HealthCheckAPI defines the health check service.
