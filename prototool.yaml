@@ -67,7 +67,3 @@ generate:
     - name: go
       type: go
       output: ../rpc/
-    # generate twirp files for the protobuf files with a service defined.
-    - name: twirp
-      type: go
-      output: ../rpc/
