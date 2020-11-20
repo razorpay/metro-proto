@@ -21,9 +21,9 @@ service ProducerApi {
 
 message ProduceRequest {
 
-  string topic = 1
+  string topic = 1;
 
-  repeated Message messages = 2
+  repeated Message messages = 2;
 }
 
 
