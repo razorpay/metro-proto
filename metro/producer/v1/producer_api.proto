@@ -4,8 +4,6 @@ syntax = "proto3";
 
 package rzp.metro.producer.v1;
 
-import "google/protobuf/timestamp.proto";
-
 option csharp_namespace = "Rzp.Metro.Producer.V1";
 option go_package = "metro/producer/v1;producerv1";
 option java_multiple_files = true;
@@ -13,7 +11,6 @@ option java_outer_classname = "ProducerApiProto";
 option java_package = "com.rzp.metro.producer.v1";
 option objc_class_prefix = "RMP";
 option php_namespace = "Rzp\\Metro\\Producer\\V1";
-
 
 
 service ProducerApi {
