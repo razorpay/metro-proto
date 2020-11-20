@@ -4,8 +4,6 @@ syntax = "proto3";
 
 package rzp.metro.producer.v1;
 
-import "google/api/field_behavior.proto";
-
 option csharp_namespace = "Rzp.Metro.Producer.V1";
 option go_package = "metro/producer/v1;producerv1";
 option java_multiple_files = true;
@@ -23,9 +21,9 @@ service ProducerApi {
 
 message ProduceRequest {
 
-  string topic = 1 [(google.api.field_behavior) = REQUIRED];
+  string topic = 1
 
-  repeated Message messages = 2 [(google.api.field_behavior) = REQUIRED];
+  repeated Message messages = 2
 }
 
 
