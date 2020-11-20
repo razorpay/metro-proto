@@ -4,6 +4,8 @@ syntax = "proto3";
 
 package rzp.metro.producer.v1;
 
+import "google/api/field_behavior.proto";
+
 option csharp_namespace = "Rzp.Metro.Producer.V1";
 option go_package = "metro/producer/v1;producerv1";
 option java_multiple_files = true;
