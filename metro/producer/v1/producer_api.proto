@@ -2,18 +2,18 @@
 
 syntax = "proto3";
 
-package rzp.metro.producer.v1;
+package metro.producer.v1;
 
-option csharp_namespace = "Rzp.Metro.Producer.V1";
+option csharp_namespace = "Metro.Producer.V1";
 option go_package = "metro/producer/v1;producerv1";
 option java_multiple_files = true;
 option java_outer_classname = "ProducerApiProto";
-option java_package = "com.rzp.metro.producer.v1";
-option objc_class_prefix = "RMP";
-option php_namespace = "Rzp\\Metro\\Producer\\V1";
+option java_package = "com.metro.producer.v1";
+option objc_class_prefix = "MP";
+option php_namespace = "Metro\\Producer\\V1";
 
 
-service ProducerApi {
+service Producer {
 
     rpc Produce(ProduceRequest) returns (ProduceResponse);
 
@@ -46,8 +46,8 @@ message Message {
 
   // ID of this message, assigned by the server when the message is Produceed.
   // Guaranteed to be unique within the topic. This value may be read by a
-  // subscriber that receives a `PubsubMessage` via a `Pull` call or a push
-  // delivery. It must not be populated by the Produceer in a `Produce` call.
+  // subscriber that receives a `Message` via a `Pull` call or a push
+  // delivery. It must not be populated by the Producer in a `Produce` call.
   string message_id = 3;
 
   // The time at which the message was Produceed, populated by the server when
@@ -62,4 +62,7 @@ message Message {
   // Pub/Sub system. All `PubsubMessage`s Produceed in a given `ProduceRequest`
   // must specify the same `ordering_key` value.
   string ordering_key = 5;
+
+  // Would be used along with ordering_key to implement message ordering
+  string sequence_id = 6;
 }
