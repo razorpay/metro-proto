@@ -37,6 +37,6 @@ service AdminService {
 
 message Project {
   string name = 1 [(google.api.field_behavior) = REQUIRED];
-  string projectId = 2;
+  string project_id = 2;
   map<string, string> labels = 3;
 }
