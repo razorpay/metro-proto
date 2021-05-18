@@ -144,6 +144,8 @@ message Topic {
     string name = 1 [(google.api.field_behavior) = REQUIRED];
 
     map<string, string> labels = 2;
+
+    int32 num_partitions = 3;
 }
 
 message DeleteTopicRequest {
