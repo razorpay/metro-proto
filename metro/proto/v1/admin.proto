@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package metro.v1;
+
+option go_package = "github.com/razorpay/metro-proto/metro/proto/v1;metrov1";
+
+import "google/api/annotations.proto";
+import "google/api/field_behaviour.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+
+// These annotations are used when generating the OpenAPI file.
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        version: "1.0"
+    }
+    external_docs: {
+        url: "https://github.com/razorpay/metro-proto"
+        description: "protobuf definitions for metro"
+    }
+    schemes: HTTP
+    schemes: HTTPS
+};
+
+
+// all APIs which deviate from the standard Google PubSub definitions will be listed here
+service AdminAPI {
+
+    // Creates the given topic with the given name
+    rpc CreateTopic(AdminTopic) returns (AdminTopic) {
+        option (google.api.http) = {
+            put: "/v1/admin/{name=projects/*/topics/*}"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create an admin topic"
+            description: "Topic creation is required before messages can be published"
+            tags: "AdminTopic"
+        };
+    }
+}
+
+// An admin topic resource.
+message AdminTopic {
+    // Required. The name of the topic. It must have the format
+    // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+    // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+    // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+    // signs (`%`). It must be between 3 and 255 characters in length, and it
+    // must not start with `"goog"`.
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+
+    map<string, string> labels = 2;
+
+    int32 num_partitions = 3;
+}
