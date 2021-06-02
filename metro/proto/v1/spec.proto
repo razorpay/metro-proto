@@ -91,12 +91,41 @@ service AdminService {
             tags: "AdminTopic"
         };
     }
+
+    rpc CreateProjectAccessKey(ProjectAccessKey) returns (ProjectAccessKey){
+        option (google.api.http) = {
+            post: "/v1/projects/{project_id}/access"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create a new project access key for an app"
+            description: "Access key to be used for all operations under this project by the app"
+            tags: "Project"
+        };
+    }
+
+    rpc DeleteProjectAccessKey(ProjectAccessKey) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            delete: "/v1/projects/{project_id}/access/{username}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Delete project specific access key"
+            description: "Delete the username created under the project"
+            tags: "Project"
+        };
+    }
 }
 
 message Project {
   string name = 1 [(google.api.field_behavior) = REQUIRED];
   string project_id = 2 [(google.api.field_behavior) = REQUIRED];
   map<string, string> labels = 3;
+}
+
+message ProjectAccessKey {
+  string project_id = 1 [(google.api.field_behavior) = REQUIRED];
+  string username = 2 [(google.api.field_behavior) = REQUIRED];
+  string password = 3;
 }
 
 service Publisher {
