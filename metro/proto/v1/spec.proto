@@ -92,25 +92,25 @@ service AdminService {
         };
     }
 
-    rpc CreateProjectAccessKey(ProjectAccessKey) returns (ProjectAccessKey){
+    rpc CreateProjectCredentials(ProjectCredentials) returns (ProjectCredentials){
         option (google.api.http) = {
-            post: "/v1/projects/{project_id}/access"
+            post: "/v1/projects/{project_id}/credentials"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Create a new project access key for an app"
-            description: "Access key to be used for all operations under this project by the app"
+            summary: "Create new project credentials for an app"
+            description: "Credentials to be used for all operations under this project by the app"
             tags: "Project"
         };
     }
 
-    rpc DeleteProjectAccessKey(ProjectAccessKey) returns (google.protobuf.Empty){
+    rpc DeleteProjectCredentials(ProjectCredentials) returns (google.protobuf.Empty){
         option (google.api.http) = {
-            delete: "/v1/projects/{project_id}/access/{username}"
+            delete: "/v1/projects/{project_id}/credentials/{username}"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Delete project specific access key"
-            description: "Delete the username created under the project"
+            summary: "Delete project specific credentials"
+            description: "Delete the credentials created under the project"
             tags: "Project"
         };
     }
@@ -122,9 +122,9 @@ message Project {
   map<string, string> labels = 3;
 }
 
-message ProjectAccessKey {
+message ProjectCredentials {
   string project_id = 1 [(google.api.field_behavior) = REQUIRED];
-  string username = 2 [(google.api.field_behavior) = REQUIRED];
+  string username = 2;
   string password = 3;
 }
 
