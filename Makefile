@@ -4,7 +4,7 @@ SHELL := /usr/bin/env bash -o pipefail
 PROJECT := metro-proto
 #
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.32.0
+BUF_VERSION := 0.43.2
 # If true, Buf is installed from source instead of from releases
 BUF_INSTALL_FROM_SOURCE := false
 
