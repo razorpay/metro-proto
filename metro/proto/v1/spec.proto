@@ -532,8 +532,10 @@ message PushConfig {
     // which uses username and password for authentication
     message BasicAuth {
 
+        // Username that will be used in Basic Authentication method while calling the push endpoint
         string username = 1;
 
+        // Password that will be used in Basic Authentication method while calling the push endpoint
         string password = 2;
     }
 
