@@ -123,20 +123,20 @@ service AdminService {
         };
     }
 
-    rpc FetchProjectCredentials(ProjectCredentials) returns (ProjectCredentials){
+    rpc GetProjectCredentials(ProjectCredentials) returns (ProjectCredentials){
         option (google.api.http) = {
             get: "/v1/projects/{project_id}/credentials/{username}"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Fetch Project Credentials for the given username"
-            description: "Fetch the project credentials from username"
+            summary: "Get Project Credentials for the given username"
+            description: "Get the project credentials from username"
             tags: "Project"
         };
     }
 
     rpc ListProjectCredentials(ProjectCredentials) returns (ProjectCredentialsList){
         option (google.api.http) = {
-            get: "/v1/projects/{project_id}/credentials/list"
+            get: "/v1/projects/{project_id}/credentials"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
             summary: "List Project Credentials"
