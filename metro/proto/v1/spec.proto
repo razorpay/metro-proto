@@ -901,7 +901,7 @@ service ConsumePlane {
     // Fetch messages from the broker. The server may return `UNAVAILABLE` if
     // there are too many concurrent pull requests pending for the given
     // subscription.
-    rpc Fetch(PullRequest) returns (PullResponse) {}
+    rpc Fetch(PullRequest) returns (PullResponse);
 
     // Acknowledges the messages associated with the `ack_ids` in the
     // `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages
@@ -910,13 +910,13 @@ service ConsumePlane {
     // Acknowledging a message whose ack deadline has expired may succeed,
     // but such a message may be redelivered later. Acknowledging a message more
     // than once will not result in an error.
-    rpc Acknowledge(AcknowledgeRequest) returns (google.protobuf.Empty) {}
+    rpc Acknowledge(AcknowledgeRequest) returns (google.protobuf.Empty);
 
     // Modifies the ack deadline for a specific message. This method is useful
     // to indicate that more time is needed to process a message by the
     // subscriber, or to make the message available for redelivery if the
     // processing was interrupted. Note that this does not modify the
     // subscription-level `ackDeadlineSeconds` used for subsequent messages.
-    rpc ModifyAckDeadline(ModifyAckDeadlineRequest) returns (google.protobuf.Empty) {}
+    rpc ModifyAckDeadline(ModifyAckDeadlineRequest) returns (google.protobuf.Empty);
 
 }
