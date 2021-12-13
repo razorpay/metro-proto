@@ -919,13 +919,13 @@ service ConsumePlane {
     // subscription.
     rpc Fetch(PullRequest) returns (PullResponse) {
         option (google.api.http) = {
-            post: "/v1/subscription:pull"
+            post: "/v1/{subscription=projects/*/subscriptions/*}:fetch"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Pull messages"
+            summary: "Fetch messages"
             description: "Pull messages for a subscription"
-            tags: "Subscriptions"
+            tags: "ConsumePlane"
         };
     }
 
@@ -944,7 +944,7 @@ service ConsumePlane {
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
             summary: "Acknowledge messages"
             description: "Acknowledge messages associated with ack_ids"
-            tags: "Subscriptions"
+            tags: "ConsumePlane"
         };
     }
 
@@ -961,7 +961,7 @@ service ConsumePlane {
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
             summary: "Modify Ack Deadline"
             description: "Modify Ack Deadline"
-            tags: "Subscriptions"
+            tags: "ConsumePlane"
         };
     }
 
