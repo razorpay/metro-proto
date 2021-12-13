@@ -917,15 +917,15 @@ service ConsumePlane {
     // Fetch messages from the broker. The server may return `UNAVAILABLE` if
     // there are too many concurrent pull requests pending for the given
     // subscription.
-    rpc Fetch(PullRequest) returns (PullResponse) {
+    rpc Fetch(FetchRequest) returns (PullResponse) {
         option (google.api.http) = {
             post: "/v1/{subscription=projects/*/subscriptions/*}:fetch"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Fetch messages"
+            summary: "Pull messages"
             description: "Pull messages for a subscription"
-            tags: "ConsumePlane"
+            tags: "Subscriptions"
         };
     }
 
@@ -938,13 +938,13 @@ service ConsumePlane {
     // than once will not result in an error.
     rpc Acknowledge(AcknowledgeRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/v1/subscription:acknowledge"
+            post: "/v1/{subscription=projects/*/subscriptions/*}:acknowledge"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
             summary: "Acknowledge messages"
             description: "Acknowledge messages associated with ack_ids"
-            tags: "ConsumePlane"
+            tags: "Subscriptions"
         };
     }
 
@@ -955,13 +955,13 @@ service ConsumePlane {
     // subscription-level `ackDeadlineSeconds` used for subsequent messages.
     rpc ModifyAckDeadline(ModifyAckDeadlineRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/v1/subscription:modifyAckDeadline"
+            post: "/v1/{subscription=projects/*/subscriptions/*}:modifyAckDeadline"
             body: "*"
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
             summary: "Modify Ack Deadline"
             description: "Modify Ack Deadline"
-            tags: "ConsumePlane"
+            tags: "Subscriptions"
         };
     }
 
