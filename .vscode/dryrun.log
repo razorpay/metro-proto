@@ -1,0 +1,14 @@
+make: Entering directory `/Users/akash.goyal/dev/metro-proto'
+rm -f /Users/akash.goyal/.cache/metro-proto/Darwin/arm64/bin/buf
+mkdir -p /Users/akash.goyal/.cache/metro-proto/Darwin/arm64/bin
+curl -sSL \
+		"https://github.com/bufbuild/buf/releases/download/v0.43.2/buf-Darwin-arm64" \
+		-o "/Users/akash.goyal/.cache/metro-proto/Darwin/arm64/bin/buf"
+chmod +x "/Users/akash.goyal/.cache/metro-proto/Darwin/arm64/bin/buf"
+rm -rf /Users/akash.goyal/.cache/metro-proto/Darwin/arm64/versions/buf/
+mkdir -p /Users/akash.goyal/.cache/metro-proto/Darwin/arm64/versions/buf/
+touch /Users/akash.goyal/.cache/metro-proto/Darwin/arm64/versions/buf/0.43.2
+buf lint
+buf breaking --against '.git#branch=master'
+make: Leaving directory `/Users/akash.goyal/dev/metro-proto'
+ 
