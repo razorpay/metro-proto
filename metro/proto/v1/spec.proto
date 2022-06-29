@@ -38,6 +38,13 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     }
 };
 
+enum SubscriptionTier {
+    UNKNOWN = 0;
+    P0 = 1;
+    P1 = 2;
+    P2 = 3;
+}
+
 message StatusCheckResponse {
     // ServingStatus denotes the status of the service.
     enum ServingStatus {
@@ -594,6 +601,12 @@ message Subscription {
     // FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
     // the endpoint will not be made.
     bool detached = 15;
+
+    // Indicates whether the subscription tier
+    // P0 - Critical payment related subscriptions
+    // P1 - Critical non payment related subscriptions
+    // P2 - Non critical subscriptions
+    SubscriptionTier tier = 16;
 }
 
 // Configuration for a push delivery endpoint.
