@@ -1052,9 +1052,9 @@ message ListProjectSubscriptionsResponse {
     repeated string subscriptions = 1;
 }
 
-//Request for the `GetSubscription` method
+// Request for the `GetSubscription` method
 message GetSubscriptionRequest {
-    // Required. The subscription from which messages should be pulled.
+    // Required. The name of subscription for which subscription details to be fetched.
     // Format is `projects/{project}/subscriptions/{sub}`.
     string name = 1 [(google.api.field_behavior) = REQUIRED];
 }
