@@ -474,6 +474,18 @@ service Subscriber {
             tags: "Subscriptions"
         };
     }
+
+    // Get subscription details by name
+    rpc GetSubscription(GetSubscriptionRequest) returns (Subscription) {
+        option (google.api.http) = {
+            get: "/v1/{name=projects/*/subscriptions/*}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Get Subscription By Name"
+            description: "Get subscription details by the subscription name"
+            tags: "Subscriptions"
+        };
+    }
 }
 
 // Request for the UpdateSubscription method.
@@ -1038,4 +1050,11 @@ message ListProjectSubscriptionsRequest {
 message ListProjectSubscriptionsResponse {
     // The names of subscriptions created in the specified project.
     repeated string subscriptions = 1;
+}
+
+// Request for the `GetSubscription` method
+message GetSubscriptionRequest {
+    // Required. The name of subscription for which subscription details to be fetched.
+    // Format is `projects/{project}/subscriptions/{sub}`.
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
 }
