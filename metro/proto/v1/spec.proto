@@ -170,6 +170,18 @@ service AdminService {
             tags: "AdminSubscription"
         };
     }
+
+    rpc SetupRetentionPolicy(google.protobuf.Empty) returns (Topics){
+        option (google.api.http) = {
+            post: "/v1/admin/topics/retention-policy"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Takes care of setting up retention policy on dlq topics"
+            description: "Takes care of setting up retention policy on dlq topics"
+            tags: "AdminTopic"
+        };
+    }
 }
 
 message Project {
@@ -190,6 +202,10 @@ message ProjectCredentialsList {
 
 message Subscriptions {
   repeated string names = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+message Topics {
+    repeated string names = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 service Publisher {
