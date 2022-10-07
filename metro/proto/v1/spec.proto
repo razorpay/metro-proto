@@ -171,7 +171,7 @@ service AdminService {
         };
     }
 
-    rpc SetupRetentionPolicy(google.protobuf.Empty) returns (Topics){
+    rpc SetupRetentionPolicy(Topics) returns (Topics){
         option (google.api.http) = {
             post: "/v1/admin/topics/retention-policy"
             body: "*"
