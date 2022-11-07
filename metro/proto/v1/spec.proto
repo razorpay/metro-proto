@@ -222,7 +222,7 @@ message Topics {
 
 message CleanupProjectsRequest {
     repeated string projects = 1 [(google.api.field_behavior) = REQUIRED];
-    bool hard_delete = 2 
+    bool hard_delete = 2;
 }
 
 service Publisher {
