@@ -171,6 +171,18 @@ service AdminService {
         };
     }
 
+    rpc CleanupTopics(Projects) returns (Topics){
+        option (google.api.http) = {
+            post: "/v1/admin/topics/cleanup"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Cleans up dangling topics including subscription related topics"
+            description: "Cleans up dangling topics including subscription related topics"
+            tags: "AdminTopic"
+        };
+    }
+
     rpc SetupRetentionPolicy(Topics) returns (Topics){
         option (google.api.http) = {
             post: "/v1/admin/topics/retention-policy"
@@ -206,6 +218,10 @@ message Subscriptions {
 
 message Topics {
     repeated string names = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Projects {
+    repeated string projects = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 service Publisher {
