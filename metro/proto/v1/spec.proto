@@ -194,6 +194,18 @@ service AdminService {
             tags: "AdminTopic"
         };
     }
+
+    rpc UpdateSubscriptionStatus(SubscriptionStatusUpdateRequst) returns (Subscriptions){
+        option (google.api.http) = {
+            post: "/v1/admin/subscriptions/update_status"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Takes care of updating subscription state"
+            description: "Takes care of updating subscription state"
+            tags: "AdminSubscription"
+        };
+    }
 }
 
 message Project {
@@ -223,6 +235,11 @@ message Topics {
 message Projects {
     repeated string projects = 1 [(google.api.field_behavior) = REQUIRED];
     bool hard_delete = 2;
+}
+
+message SubscriptionStatusUpdateRequst {
+    repeated string names = 1 [(google.api.field_behavior) = REQUIRED];
+    bool detached = 2;
 }
 
 service Publisher {
