@@ -194,6 +194,18 @@ service AdminService {
             tags: "AdminTopic"
         };
     }
+
+    rpc DeactivateSubscriptions(Subscriptions) returns (Subscriptions){
+        option (google.api.http) = {
+            post: "/v1/admin/subscriptions/deactivate"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Takes care of deactivating subscriptions"
+            description: "Takes care of deactivating subscriptions"
+            tags: "AdminSubscription"
+        };
+    }
 }
 
 message Project {
