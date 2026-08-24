@@ -15,6 +15,12 @@ jobs:
       - name: checkout
         if: success()
         uses: actions/checkout@v1
+      # Start PMG in server mode to intercept and block malicious package installs
+      - uses: safedep/pmg@v1
+        with:
+          server-mode: true
+          api-key: ${{ secrets.SAFEDEP_API_KEY }}
+          tenant-id: ${{ secrets.SAFEDEP_TENANT_ID }}
       # There is no need to do this if you are not installing from source
       - name: setup
         if: success()
@@ -24,3 +30,7 @@ jobs:
       - name: make local
         if: success()
         run: make local
+      # Enforce PMG policy and flush events
+      - name: Stop proxy
+        if: always()
+        run: pmg proxy stop --fail-on-violation
